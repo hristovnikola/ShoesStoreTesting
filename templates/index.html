@@ -1,0 +1,44 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-md-6 d-flex justify-content-center align-items-center flex-column">
+                <p class="text-center m-auto first_p">Step into style with our stunning
+                        collection of shoes that are
+                        sure to turn heads wherever you go.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/shoes1.png' %}" class="shoes1" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid second_row">
+        <div class="container">
+            <div class="row my-5 second_row">
+                <div class="col-md-6 pt-5">
+                    <img src="{% static 'images/shoes2.png' %}" class="shoes2" alt="">
+                </div>
+                <div class="col-md-6 mb-md-0 mb-5 d-flex justify-content-center align-items-center flex-column">
+                    <p class="text-center m-auto first_p" style="color: #EEEEEE;">Looking for the perfect pair of shoes to complete your outfit?
+                    Look no further than our extensive
+                    selection of trendy and comfortable footwear.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-md-6 d-flex justify-content-center align-items-center flex-column">
+                <p class="text-center m-auto first_p">Whether you require shoes for an upcoming event, for activities
+                    such as cycling, football, or basketball, or simply for everyday use, we provide a diverse range of
+                    footwear options that cater to all styles and preferences.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'images/shoes3.png' %}" class="shoes1 d-flex ms-auto" alt="">
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}

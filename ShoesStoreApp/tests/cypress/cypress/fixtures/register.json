@@ -1,0 +1,16 @@
+{
+  "registerData": [
+    {
+      "username": "darko.darkovski",
+      "email": "darko@yahoo.com",
+      "password": "example_pass_for_darko123",
+      "repeat_password": "example_pass_for_darko123"
+    },
+    {
+      "username": "stefan.stefanovski",
+      "email": "stefan@yahoo.com",
+      "password": "example_pass_for_stefan123",
+      "repeat_password": "example_pass_for_stefan123"
+    }
+  ]
+}

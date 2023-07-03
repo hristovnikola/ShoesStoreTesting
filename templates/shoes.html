@@ -1,0 +1,118 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <p class="text-center my-5 fw-semibold fs-3">Select your favorite pair of shoes and add them to the shopping
+            cart</p>
+        <hr style="color: #00ADB5">
+    </div>
+
+    {% if user.is_superuser %}
+        <div class="container">
+            <a id="add_shoes_btn" class="btn btn-primary px-5 py-2 rounded-3 my-3 add_shoes_btn w-100" href="{% url 'add_shoes' %}">Add new
+                shoes</a>
+        </div>
+    {% endif %}
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-2 mt-5">
+                <div class="types">
+                    <a class="types_collapse" data-bs-toggle="collapse" href="#typesCollapse" role="button"
+                       aria-expanded="true" aria-controls="collapseExample">
+                        <p class="text-center m-auto py-2">Types of shoes
+                            <svg class="mb-1 ms-1" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                 viewBox="0 0 384 512">
+                                <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/>
+                            </svg>
+                        </p>
+                    </a>
+                </div>
+                {% for shoe_type, count in shoe_type_counts %}
+                    <div class="collapse" id="typesCollapse">
+                        <p class="my-2 ms-3 d-flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-caret-right-fill mt-1 me-2" viewBox="0 0 16 16">
+                                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            </svg>
+                            <a href="/shoes/?type={{ shoe_type }}" class="filters">{{ shoe_type }}</a>
+                            <span class="badge bg-secondary rounded-pill ms-auto">{{ count }}</span>
+                        </p>
+                    </div>
+                {% endfor %}
+                <div class="types mt-1">
+                    <a class="types_collapse" data-bs-toggle="collapse" href="#brandsCollapse" role="button"
+                       aria-expanded="false" aria-controls="collapseExample">
+                        <p class="text-center m-auto py-2">Brands
+                            <svg class="mb-1 ms-1" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                 viewBox="0 0 384 512">
+                                <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/>
+                            </svg>
+                        </p>
+                    </a>
+                </div>
+                {% for shoe_brand, count in shoe_brand_counts %}
+                    <div class="collapse" id="brandsCollapse">
+                        <p class="my-2 ms-3 d-flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-caret-right-fill mt-1 me-2" viewBox="0 0 16 16">
+                                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            </svg>
+                            <a href="/shoes/?brand={{ shoe_brand }}" class="filters">{{ shoe_brand }}</a>
+                            <span class="badge bg-secondary rounded-pill ms-auto">{{ count }}</span>
+                        </p>
+                    </div>
+                {% endfor %}
+
+            </div>
+            <div class="col-lg-10">
+                <div class="row ">
+                    {% for shoe in shoes %}
+                        <div class="col-lg-4 col-md-6 mt-5 pair_of_shoe" style="max-width: 100%;">
+                            <img class="mb-1" src="{{ shoe.imageURL }}" style="width: 100%" alt="">
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-1">{{ shoe.type }}</p>
+                                <p class="mb-1">{{ shoe.brand }}</p>
+                            </div>
+                            <b class="mb-1">{{ shoe.name }}</b>
+                            <hr>
+                            <div class="d-flex">
+                                <p class="flex-grow-1">${{ shoe.price }}</p>
+                                <a class="text-decoration-none text-black details_button"
+                                   href="{% url 'shoes_details' shoe.id %}">Details</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav aria-label="Page navigation example" class="mt-5">
+        <ul class="pagination justify-content-center">
+            {% if shoes.has_previous %}
+                <li class="page-item">
+                    <a href="{% url 'shoes' %}?page={{ shoes.previous_page_number }}" class="page-link">Previous</a>
+                </li>
+            {% endif %}
+            {% for num_page in shoes.paginator.page_range %}
+                {% if shoes.number == num_page %}
+                    <li class="page-item active" aria-current="page"><a class="page-link"
+                                                                        href="{% url 'shoes' %}?page={{ num_page }}">{{ num_page }}</a>
+                    </li>
+
+                {% else %}
+                    <li class="page-item" aria-current="page"><a class="page-link"
+                                                                 href="{% url 'shoes' %}?page={{ num_page }}">{{ num_page }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if shoes.has_next %}
+                <li class="page-item">
+                    <a href="{% url 'shoes' %}?page={{ shoes.next_page_number }}" class="page-link">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock content %}

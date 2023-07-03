@@ -1,0 +1,12 @@
+{
+  "newLoginData": [
+    {
+      "username": "darko.darkovski",
+      "password": "example_pass_for_darko123"
+    },
+    {
+      "username": "stefan.stefanovski",
+      "password": "example_pass_for_stefan123"
+    }
+  ]
+}

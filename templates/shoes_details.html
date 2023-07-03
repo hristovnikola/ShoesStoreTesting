@@ -1,0 +1,64 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <p class="text-center my-5 fw-semibold fs-3">{{ pair_of_shoes.name }}</p>
+        <hr style="color: #00ADB5">
+    </div>
+
+    <div class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <img src="{{ pair_of_shoes.imageURL }}" alt="" class="w-100">
+                <div class="price_details w-100">
+                    <h4 id="shoes_details_price" class="text-center py-3">$ {{ pair_of_shoes.price }}</h4>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <p class="mb-0"><b>Description</b></p>
+                {{ pair_of_shoes.description }}
+                <p class="mb-0"><b>Available sizes</b></p>
+                <form method="POST" action="{% url 'add_to_cart' %}">
+                    {% csrf_token %}
+                    <div class="d-flex">
+                        {% for i in pair_of_shoes.size.all %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="selected_size" value="{{ i.size }}"
+                                       id="flexRadioDefault1" required>
+                                <label class="form-check-label me-3" for="flexRadioDefault1">
+                                    {{ i.size }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <span class="badge text-bg-danger mt-3 py-2 px-4">{{ message }}</span>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <p class="mb-0"><b>Brand</b></p>
+                    {{ pair_of_shoes.brand }}
+                    <p class="mb-0"><b>Type</b></p>
+                    {{ pair_of_shoes.type }}
+                    <p class="mb-0"><b>Color</b></p>
+                    {{ pair_of_shoes.color }}
+                    <div class="d-flex justify-content-end">
+                        {% if user.is_superuser %}
+                            <a id="edit_button" class="btn add_shoes_btn py-2 px-4 me-3 mt-5"
+                               href="{% url 'shoes_edit' pair_of_shoes.id %}">Edit</a>
+                            <a id="delete_button" class="btn add_shoes_btn py-2 px-4 me-3 mt-5 "
+                               href="{% url 'delete_shoes' pair_of_shoes.id %}">Delete</a>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                            <input type="hidden" name="shoes_id" value="{{ pair_of_shoes.id }}">
+                            <button id="add_to_cart_button" class="btn add_shoes_btn py-2 px-4 me-3 mt-5 " type="submit">Add to Cart</button>
+
+                        {% endif %}
+                        <a id="back_to_shoes" class="btn add_shoes_btn py-2 px-4 me-3 mt-5" href="{% url 'shoes' %}">Back to Shoes</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

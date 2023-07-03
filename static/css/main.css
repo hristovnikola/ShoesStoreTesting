@@ -1,0 +1,144 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex-grow: 1;
+}
+
+.navbar, footer, .price_details {
+    background: #00ADB5 !important;
+    color: #EEEEEE;
+}
+
+.navbar-brand {
+    color: #EEEEEE !important;
+/ / font-family: 'Zilla Slab', emoji;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 25px !important;
+}
+
+.nav-link, .footer-text {
+    color: #EEEEEE !important;
+/ / font-family: 'Zilla Slab', emoji;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 25px !important;
+}
+
+/*.cart-total{*/
+/*	margin-bottom: -20px !important;*/
+/*    margin-left: -10px;*/
+/*}*/
+
+
+.chg-quantity {
+    width: 12px;
+    cursor: pointer;
+    display: block;
+    margin-top: 5px;
+    transition: .1s;
+}
+
+.chg-quantity:hover {
+    opacity: .6;
+}
+
+.first_p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+}
+
+.shoes1 {
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+}
+
+.shoes2 {
+    width: auto;
+    height: auto;
+    max-width: 80%;
+    transform: matrix(-0.94, 0.33, 0.33, 0.94, 0, 0);
+}
+
+.filters, .types_collapse {
+    text-decoration: none !important;
+    color: black;
+}
+
+.filters :hover {
+    color: #00ADB5 !important;
+}
+
+.second_row {
+    background: #393E46;
+}
+
+.types {
+    background: #EEEEEE;
+    border-radius: 5px;
+}
+
+.types :hover {
+    background: #00ADB5 !important;
+    color: white;
+    border-radius: 5px;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+#loginRegisterForm, .not_allowed {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+}
+
+.log_in_button, .add_shoes_btn, .submit_add_form {
+    color: #EEEEEE !important;
+    background-color: #00ADB5 !important;
+    border-color: #00ADB5 !important;
+}
+
+.form-control {
+    color: #393E46 !important;
+    background-color: #EEEEEE !important;
+    border-color: #00ADB5 !important;
+}
+
+#id_description {
+    height: 150px !important;
+}
+
+::-webkit-scrollbar {
+    width: .60rem;
+    background-color: white;
+    border-radius: .5rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #00ADB5;
+    border-radius: .5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #012425;
+}
+
+.disabled_btn {
+    border: 1px solid #999999 !important;
+    background-color: #cccccc !important;
+    color: #666666 !important;
+}

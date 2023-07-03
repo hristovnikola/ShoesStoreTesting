@@ -1,0 +1,66 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <p class="text-center my-5 fw-semibold fs-3">Add new pair of shoes</p>
+        <hr style="color: #00ADB5">
+    </div>
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-6">
+                    <label class="mb-2"><b>Name</b></label>
+                    {{ form.name }}
+                </div>
+                <div class="col-6">
+                    <label class="mb-2"><b>Price</b></label>
+                    {{ form.price }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label class="mb-2"><b>Description</b></label>
+                    {{ form.description }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label class="mb-2"><b>Available sizes</b> (Hold CTRL to select multiple)</label>
+                    {{ form.size }}
+                    {% for i in pair_of_shoes.size.all %}
+                        {{ i.size }}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <label class="mb-2"><b>Brand</b></label>
+                    {{ form.brand }}
+                </div>
+                <div class="col-4">
+                    <label class="mb-2"><b>Type</b></label>
+                    {{ form.type }}
+                </div>
+                <div class="col-4">
+                    <label class="mb-2"><b>Color</b></label>
+                    {{ form.color }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label class="mb-2"><b>Image</b></label>
+                    {{ form.image }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button id="add_edit_shoes_submit" class="btn submit_add_form w-100 px-5 py-2 mt-3 rounded-3" type="submit" name="Shoes">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

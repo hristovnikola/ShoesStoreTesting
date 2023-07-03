@@ -1,0 +1,13 @@
+{
+  "deniedAccess": [
+    {
+      "url": "http://127.0.0.1:8000/cart"
+    },
+    {
+      "url": "http://127.0.0.1:8000/add_shoes"
+    },
+    {
+      "url": "http://127.0.0.1:8000/logoutUser"
+    }
+  ]
+}

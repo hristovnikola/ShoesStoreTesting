@@ -1,0 +1,14 @@
+{
+  "addNewShoes": [
+    {
+      "name": "ABCD",
+      "price": "100",
+      "description": "This is example description for ABCD shoes",
+      "available_size": "44",
+      "brand": "Adidas",
+      "type": "Running shoes",
+      "color": "Blue",
+      "image": "C://Users/lenovo/Desktop/example.jpg"
+    }
+  ]
+}
